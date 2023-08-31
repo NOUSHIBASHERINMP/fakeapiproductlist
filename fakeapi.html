@@ -1,0 +1,37 @@
+<html><head>IT Is Checking</head>
+<div class="products" style="background-color:violet; text-align: center;"></div>
+<script>
+    async function getCollections(){
+        var collections = await fetch('https://fakestoreapi.com/products',{
+            method:'GET'
+        });
+        var data = await collections.json();
+       var product = document.getElementsByClassName('products'); 
+       var productlist = product[0];
+       var productView = "";
+       for(p of data){
+        productView=productView+"<div>" +
+          '<h1 style="color:blue"><u>' +
+          p.title +
+          '</u></h1><div><img height="300px" src="' +
+          p.image +
+          '"/></div><div><h3 style="color:brown">Rating is  ' +
+          p.rating.rate +
+          " From " +
+          p.rating.count +
+          ' customers </h3></div><h3 style="color:green">Price:' +
+          p.price +
+          "</div></h3><div><h3>ID: " +
+          p.id +
+          "</div></h3><div><h2> category :" +
+          p.category +
+          '</div></h2><div><h3 style="color:purple">' +
+          p.description +
+          "</div></h3>";
+       }
+        console.log(productView);
+        productlist.innerHTML = productView;
+        
+    }
+    getCollections();
+</script></html>
